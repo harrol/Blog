@@ -53,4 +53,13 @@ public class BlogService {
 	}
 
 
+	/**
+	 * Add a new blogpost
+	 * @param post the post to add
+	 */
+	public void addPost(BlogPost post) {
+		posts.add(post);
+	}
+
+
 }
