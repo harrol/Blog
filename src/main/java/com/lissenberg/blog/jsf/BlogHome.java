@@ -22,7 +22,7 @@ public class BlogHome implements Serializable {
 	private StatsService statsService;
 
 	public BlogPost getThePost() {
-		return blogService.getLatestPosts(12).get(0);
+		return blogService.getLatestPosts(6).get(0);
 	}
 
 	public Statistics getStatistics(Long blogId) {

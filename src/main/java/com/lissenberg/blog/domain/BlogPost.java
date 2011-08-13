@@ -2,8 +2,15 @@ package com.lissenberg.blog.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class BlogPost {
+
+	@Id
 	private Long id;
+
 	private Date posted = new Date();
 	private String title;
 	private String text;
