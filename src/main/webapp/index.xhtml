@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>index.xhtml</title>
+</head>
+<body>
+<ui:composition
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="template.xhtml"
+		xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:define name="top">
+		Java EE 6 Blog - <i>welcome #{signedInUser.name}</i>
+	</ui:define>
+
+	<ui:define name="content">
+		<li><i>title:</i> #{blogHome.thePost.title}</li>
+		<li><i>posted:</i> #{blogHome.thePost.posted}</li>
+		<li><i>by:</i> #{blogHome.thePost.author.name}</li>
+		<li><i>views:</i> #{statsService.updateStatistics(blogHome.thePost.id).hits}</li>
+
+		<p>
+			<h:outputText value="#{blogHome.thePost.text}" escape="false"/>
+		</p>
+	</ui:define>
+
+
+</ui:composition>
+</body>
+</html>

@@ -1,3 +1,5 @@
+This blog is written using Java EE 6 technology. It's purely an exercise in Java EE 6.
+
 Repo layout
 =========== 
 deployments/ - location for built wars (Details below)
