@@ -2,18 +2,21 @@ package com.lissenberg.blog.domain;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "blog_post")
 public class BlogPost {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
 	private Date posted = new Date();
 	private String title;
 	private String text;
+
+    @OneToOne
 	private User author;
 
 	public Long getId() {

@@ -1,17 +1,24 @@
 package com.lissenberg.blog.domain;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.management.relation.RoleStatus;
+import javax.persistence.*;
 
 /**
  * User: harro Date: 5/7/11 Time: 10:59 PM
  */
+@Entity(name = "blog_user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String username;
 	private String name;
+    @Transient
 	private Set<UserRole> roles;
+
 
 	public User(Long id, String username, String name, Set<UserRole> roles) {
 		this.id = id;

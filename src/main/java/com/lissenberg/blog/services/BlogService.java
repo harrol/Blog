@@ -27,7 +27,7 @@ public class BlogService {
 		BlogPost post = new BlogPost();
 		post.setId(1L);
 		post.setAuthor(harro);
-		post.setTitle("What on earth is this???");
+		post.setTitle("First post!");
 		post.setText("Java EE 6 is well over a year old and I never got the change to work with it in a " +
 				"profession environment. All current projects my company runs still use old and trusted frameworks.<br/>" +
 				"I decided to take matters into my own hands and started this quest to learn Java EE 6." +
