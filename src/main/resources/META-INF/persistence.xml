@@ -5,7 +5,6 @@
    <persistence-unit name="sample">
       <jta-data-source>java:jboss/datasources/MysqlDS</jta-data-source>
       <properties>
-          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
           <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
       </properties>
    </persistence-unit>
