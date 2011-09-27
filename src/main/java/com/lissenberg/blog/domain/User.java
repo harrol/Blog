@@ -1,9 +1,7 @@
 package com.lissenberg.blog.domain;
 
-import java.util.Date;
 import java.util.Set;
 
-import javax.management.relation.RoleStatus;
 import javax.persistence.*;
 
 /**
@@ -18,9 +16,12 @@ public class User {
 	private String name;
     @Transient
 	private Set<UserRole> roles;
+    @Transient
+    private String unEncryptedPassword;
+    private String passwordHash;
 
 
-	public User(Long id, String username, String name, Set<UserRole> roles) {
+    public User(Long id, String username, String name, Set<UserRole> roles) {
 		this.id = id;
 		this.username = username;
 		this.name = name;
@@ -61,4 +62,14 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+    public void setUnEncryptedPassword(String unEncryptedPassword) {
+        this.unEncryptedPassword = unEncryptedPassword;
+        createHash(unEncryptedPassword);
+    }
+    
+    private void createHash(final String unEncryptedPassword) {
+        String hash = username + "||" + unEncryptedPassword;
+        this.passwordHash = hash;
+    }
 }
