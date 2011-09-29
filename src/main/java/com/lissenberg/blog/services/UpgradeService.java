@@ -27,7 +27,6 @@ public class UpgradeService {
     }
     
     
-    @PostConstruct
     public void createFirstPost() {
 
     }
