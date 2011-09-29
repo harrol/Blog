@@ -1,7 +1,7 @@
 .openshift
 .idea
+deployments
 *.iml
 target
 classes
-blog-test-db
 derby.log
