@@ -16,7 +16,8 @@ public class BlogPost {
 	private String title;
 	private String text;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="user_id")
 	private User author;
 
 	public Long getId() {

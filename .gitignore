@@ -3,4 +3,4 @@
 target
 classes
 blog-test-db
-
+derby.log
