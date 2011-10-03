@@ -5,16 +5,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.lissenberg.blog.domain.Statistics;
 
-@Singleton
-@Named
+/**
+ * Statistics service
+ * @author Harro Lissenberg
+ */
+@Stateless
 public class StatsService {
 
-	private Map<Long, Statistics> stats;
+    @PersistenceContext
+    EntityManager entityManager;
 
 	/**
 	 * Updates and returns the statistics for the specified blog post.
@@ -26,24 +33,21 @@ public class StatsService {
 	 */
 	public Statistics updateStatistics(Long blogId) {
 		Date now = new Date();
-		Statistics statistics = stats.get(blogId);
+		Statistics statistics = entityManager.find(Statistics.class, blogId);
 		if (statistics == null) {
 			statistics = new Statistics();
-			statistics.setBlogId(blogId);
 			statistics.setFirstVisit(now);
 			statistics.setLastVisit(now);
 			statistics.setHits(1);
-			stats.put(blogId, statistics);
+            entityManager.persist(statistics);
 		} else {
 			statistics.setLastVisit(now);
 			statistics.addHit();
+            entityManager.merge(statistics);
 		}
+        entityManager.detach(statistics);
 		return statistics;
 	}
 
-	@PostConstruct
-	public void init() {
-		stats = new HashMap<Long, Statistics>();
-	}
 
 }

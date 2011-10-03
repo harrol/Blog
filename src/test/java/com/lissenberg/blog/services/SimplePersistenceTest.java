@@ -1,8 +1,9 @@
-package com.lissenberg.blog;
+package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
 import com.lissenberg.blog.domain.User;
 import com.lissenberg.blog.domain.UserRole;
+import com.lissenberg.blog.services.BlogService;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,6 +16,7 @@ import javax.persistence.Persistence;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -27,11 +29,14 @@ public class SimplePersistenceTest {
     private static EntityManagerFactory entityManagerFactory;
     private static EntityManager entityManager;
     private static EntityTransaction entityTransaction;
+    private static BlogService blogService;
    
     @BeforeClass
     public static void init() throws Exception {
         entityManagerFactory = Persistence.createEntityManagerFactory("in-memory-test-db");
         entityManager = entityManagerFactory.createEntityManager();
+        blogService = new BlogService();
+        blogService.entityManager = entityManager;
     }
 
     @AfterClass
@@ -50,7 +55,7 @@ public class SimplePersistenceTest {
         User user = new User();
         user.setName("name");
         user.setUsername("username");
-        user.setRoles(new HashSet<UserRole>(Arrays.asList(UserRole.WRITER, UserRole.READER)));
+        user.setRole(UserRole.WRITER);
         BlogPost post = new BlogPost();
         post.setAuthor(user);
         post.setPosted(new Date());
@@ -62,5 +67,11 @@ public class SimplePersistenceTest {
         entityManager.persist(post);
         entityTransaction.commit();
         assertNotNull(post.getId());
+
+        List<BlogPost> posts = blogService.getLatestPosts(0, 10);
+        assertEquals(1, posts.size());
+        assertEquals(post.getId(), posts.get(0).getId());
+
+
     }
 }

@@ -14,11 +14,14 @@ import javax.inject.Named;
 import com.lissenberg.blog.domain.User;
 import com.lissenberg.blog.domain.UserRole;
 
+/**
+ * @author Harro Lissenberg
+ */
 @Named
 @SessionScoped
 public class UserManager implements Serializable {
 
-	private static final User anonymousUser = new User(-999L, "anonymous", "Anonymous visitor", Collections.singleton(UserRole.READER));
+	private static final User anonymousUser = new User(-999L, "anonymous", "Anonymous visitor", UserRole.READER);
 
 	private User user;
 
@@ -33,10 +36,7 @@ public class UserManager implements Serializable {
 	}
 
 	public void logon(String username, String password) {
-		Set<UserRole> roles = new HashSet<UserRole>();
-		roles.add(UserRole.READER);
-		roles.add(UserRole.WRITER);
-		user = new User(12L, username, username, roles);
+		user = new User(12L, username, username, UserRole.WRITER);
 	}
 
 }

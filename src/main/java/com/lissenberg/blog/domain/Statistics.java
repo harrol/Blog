@@ -1,47 +1,57 @@
 package com.lissenberg.blog.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Holds statistics for a blog post
+ *
+ * @author Harro Lissenberg
+ */
+@Entity
 public class Statistics {
-	private Long blogId;
-	private Date firstVisit;
-	private Date lastVisit;
-	private AtomicInteger hits;
 
-	public Long getBlogId() {
-		return blogId;
-	}
+    @Id
+    private Long blogId;
+    private Date firstVisit;
+    private Date lastVisit;
+    private AtomicInteger hits;
 
-	public void setBlogId(Long blogId) {
-		this.blogId = blogId;
-	}
+    public Long getBlogId() {
+        return blogId;
+    }
 
-	public Date getFirstVisit() {
-		return firstVisit;
-	}
+    public void setBlogId(Long id) {
+        this.blogId = id;
+    }
 
-	public void setFirstVisit(Date firstVisit) {
-		this.firstVisit = firstVisit;
-	}
+    public Date getFirstVisit() {
+        return firstVisit;
+    }
 
-	public Date getLastVisit() {
-		return lastVisit;
-	}
+    public void setFirstVisit(Date firstVisit) {
+        this.firstVisit = firstVisit;
+    }
 
-	public void setLastVisit(Date lastVisit) {
-		this.lastVisit = lastVisit;
-	}
+    public Date getLastVisit() {
+        return lastVisit;
+    }
 
-	public void setHits(int hits) {
-		this.hits = new AtomicInteger(hits);
-	}
+    public void setLastVisit(Date lastVisit) {
+        this.lastVisit = lastVisit;
+    }
 
-	public int getHits() {
-		return hits.get();
-	}
+    public void setHits(int hits) {
+        this.hits = new AtomicInteger(hits);
+    }
 
-	public void addHit() {
-		hits.incrementAndGet();
-	}
+    public int getHits() {
+        return hits.get();
+    }
+
+    public void addHit() {
+        hits.incrementAndGet();
+    }
 }

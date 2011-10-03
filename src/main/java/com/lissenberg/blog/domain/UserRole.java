@@ -1,10 +1,10 @@
 package com.lissenberg.blog.domain;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
+/**
+ * @author Harro Lissenberg
+ */
 public enum UserRole {
 
-	READER, WRITER, ADMIN
+    READER, WRITER, EDITOR, ADMINISTRATOR
 
 }

@@ -20,7 +20,7 @@ public class BlogPost {
     @JoinColumn(name="user_id")
 	private User author;
 
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 

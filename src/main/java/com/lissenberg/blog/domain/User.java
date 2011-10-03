@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 /**
- * User: harro Date: 5/7/11 Time: 10:59 PM
+ * @author Harro Lissenberg
  */
 @Entity(name = "blog_user")
 public class User {
@@ -14,32 +14,30 @@ public class User {
 	private Long id;
 	private String username;
 	private String name;
-    @Transient
-	private Set<UserRole> roles;
-    @Transient
-    private String unEncryptedPassword;
+    @Enumerated(value = EnumType.STRING)
+	private UserRole role;
     private String passwordHash;
 
 
-    public User(Long id, String username, String name, Set<UserRole> roles) {
+    public User(Long id, String username, String name, UserRole role) {
 		this.id = id;
 		this.username = username;
 		this.name = name;
-		this.roles = roles;
+        this.role = role;
 	}
 
 	public User() {
 	}
 
-	public Set<UserRole> getRoles() {
-		return roles;
-	}
+    public UserRole getRole() {
+        return role;
+    }
 
-	public void setRoles(Set<UserRole> roles) {
-		this.roles = roles;
-	}
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 
@@ -63,13 +61,4 @@ public class User {
 		this.name = name;
 	}
 
-    public void setUnEncryptedPassword(String unEncryptedPassword) {
-        this.unEncryptedPassword = unEncryptedPassword;
-        createHash(unEncryptedPassword);
-    }
-    
-    private void createHash(final String unEncryptedPassword) {
-        String hash = username + "||" + unEncryptedPassword;
-        this.passwordHash = hash;
-    }
 }
