@@ -14,6 +14,7 @@ public class BlogPost {
     @Temporal(TemporalType.TIMESTAMP)
 	private Date posted = new Date();
 	private String title;
+    @Column(length = 10000)
 	private String text;
 
     @ManyToOne

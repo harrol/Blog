@@ -7,6 +7,7 @@ import com.lissenberg.blog.domain.User;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Harro Lissenberg
  */
+@Startup
 @Singleton
 public class UpgradeService {
 
@@ -26,7 +28,7 @@ public class UpgradeService {
     BlogService blogService;
 
     @PostConstruct
-    public void createAdminUser() {
+    public void updateDatabase() {
         if(blogService.getLatestPosts(0, 5).size() > 0) {
             // already inserted
             return;
@@ -50,13 +52,7 @@ public class UpgradeService {
                 "It starts now...");
 
 
-        entityManager.persist(post);
-
-        Statistics stats = new Statistics();
-        stats.setBlogId(post.getId());
-        stats.setHits(0);
-
-        entityManager.persist(stats);
+        blogService.savePost(post);
     }
 
 
