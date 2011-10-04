@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author Harro Lissenberg
  */
-@Entity
+@Entity(name = "blog_stats")
 public class Statistics {
 
     @Id
