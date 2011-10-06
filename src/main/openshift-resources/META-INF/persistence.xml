@@ -4,11 +4,9 @@
              version="2.0">
     <persistence-unit name="primary" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/MysqlDS</jta-data-source>
-        <class>com.lissenberg.blog.domain.User</class>
-        <class>com.lissenberg.blog.domain.BlogPost</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
         </properties>
     </persistence-unit>
 </persistence>
