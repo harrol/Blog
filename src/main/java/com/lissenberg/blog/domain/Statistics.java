@@ -1,7 +1,10 @@
 package com.lissenberg.blog.domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -43,10 +46,12 @@ public class Statistics {
         this.lastVisit = lastVisit;
     }
 
+    @Access(AccessType.PROPERTY)
     public void setHits(int hits) {
         this.hits = new AtomicInteger(hits);
     }
 
+    @Access(AccessType.PROPERTY)
     public int getHits() {
         return hits.get();
     }
@@ -54,4 +59,6 @@ public class Statistics {
     public void addHit() {
         hits.incrementAndGet();
     }
+
+
 }

@@ -20,9 +20,9 @@ public class Referers {
 
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date visit;
-    
+
     private Long blogId;
-    
+
     private String referer;
 
     public Long getId() {

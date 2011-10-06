@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class SecurityService {
-    
+
     private static final int ITERATIONS = 10000;
 
     Logger LOG = Logger.getLogger(SecurityService.class.getName());

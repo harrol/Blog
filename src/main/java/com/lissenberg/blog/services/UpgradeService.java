@@ -1,7 +1,6 @@
 package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
-import com.lissenberg.blog.domain.Statistics;
 import com.lissenberg.blog.domain.User;
 
 import javax.annotation.PostConstruct;
@@ -29,7 +28,7 @@ public class UpgradeService {
 
     @PostConstruct
     public void updateDatabase() {
-        if(blogService.getLatestPosts(0, 5).size() > 0) {
+        if (blogService.getLatestPosts(0, 5).size() > 0) {
             // already inserted
             return;
         }

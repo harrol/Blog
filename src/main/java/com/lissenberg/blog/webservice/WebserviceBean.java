@@ -6,15 +6,15 @@ import javax.jws.WebService;
 @WebService
 public class WebserviceBean {
 
-	@WebMethod
-	public String sayHello() {
-		return "Hello there!";
-	}
+    @WebMethod
+    public String sayHello() {
+        return "Hello there!";
+    }
 
-	@WebMethod
-	public String sayHi(String name) {
-		return "Hi " + name + "!";
-	}
+    @WebMethod
+    public String sayHi(String name) {
+        return "Hi " + name + "!";
+    }
 
 
 }

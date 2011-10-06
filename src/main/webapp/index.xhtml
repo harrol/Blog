@@ -15,13 +15,13 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<li><i>title:</i> #{blogHome.thePost.title}</li>
-		<li><i>posted:</i> #{blogHome.thePost.posted}</li>
-		<li><i>by:</i> #{blogHome.thePost.author.name}</li>
-		<li><i>views:</i> #{statsService.updateStatistics(blogHome.thePost.id).hits}</li>
+		<li><i>title:</i> #{blogHome.currentPost.title}</li>
+		<li><i>posted:</i> #{blogHome.formatTime(blogHome.currentPost.posted)}</li>
+		<li><i>by:</i> #{blogHome.currentPost.author.name}</li>
+		<li><i>views:</i> #{blogHome.getStatistics(blogHome.currentPost.id).hits}</li>
 
 		<p>
-			<h:outputText value="#{blogHome.thePost.text}" escape="false"/>
+			<h:outputText value="#{blogHome.currentPost.text}" escape="false"/>
 		</p>
 	</ui:define>
 

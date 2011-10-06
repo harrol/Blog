@@ -8,17 +8,9 @@ import java.util.Date;
 
 @Stateless
 public class TimeService implements Serializable {
-    
-    public String getTheTime() {
-        return new Date().toString();
-    }
-    
-    public Date getTheDate() {
-        return new Date();
-    }
-    
-    public String getFormattedDate() {
+
+    public String getFormattedDate(final Date date) {
         DateFormat df = new SimpleDateFormat("H:m dd-MM-yyyy");
-        return df.format(new Date());
+        return df.format(date);
     }
 }
