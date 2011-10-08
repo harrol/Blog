@@ -1,7 +1,5 @@
 .openshift
-.idea
 deployments
-*.iml
 target
 classes
 derby.log
