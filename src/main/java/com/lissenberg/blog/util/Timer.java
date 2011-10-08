@@ -34,7 +34,6 @@ public class Timer {
     /**
      * Returns the duration of this timer. Timer will continue.
      *
-     * @param timeUnit the time unit of the duration
      * @return the duration
      */
     public long getDuration(Unit timeUnit) {
