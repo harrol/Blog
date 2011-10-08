@@ -3,5 +3,6 @@ deployments
 target
 classes
 derby.log
-
+*.iml
+.idea
 
