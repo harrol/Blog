@@ -37,7 +37,7 @@ public class BlogHome implements Serializable {
     public String getTheTime() {
         return formatTime(new Date());
     }
-    
+
     public String formatTime(final Date date) {
         return timeService.getFormattedDate(date);
     }

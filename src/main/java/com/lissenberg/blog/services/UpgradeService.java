@@ -2,13 +2,16 @@ package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
 import com.lissenberg.blog.domain.User;
+import com.lissenberg.blog.util.Log;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.logging.Logger;
 
 /**
  * This class is used to update database tables or data when required.
@@ -20,6 +23,10 @@ import javax.persistence.PersistenceContext;
 @Singleton
 public class UpgradeService {
 
+    @Inject
+    @Log
+    Logger LOG;
+
     @PersistenceContext
     EntityManager entityManager;
 
@@ -28,15 +35,18 @@ public class UpgradeService {
 
     @PostConstruct
     public void updateDatabase() {
-        if (blogService.getLatestPosts(0, 5).size() > 0) {
+        if (blogService.getLatestPosts(0, 2).size() > 0) {
             // already inserted
+            LOG.info("No upgrades required");
             return;
         }
+        LOG.info("Inserting administrator");
         User admin = new User();
         admin.setName("Administrator");
         admin.setUsername("admin");
         entityManager.persist(admin);
 
+        LOG.info("Inserting first post");
         // create first post
         BlogPost post = new BlogPost();
         post.setAuthor(admin);

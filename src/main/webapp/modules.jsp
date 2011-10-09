@@ -6,7 +6,7 @@ repo and pushing it.
 -->
 <HTML>
 <HEAD>
-	<TITLE>JBossAS7 Custom Modules Test Page</TITLE>
+    <TITLE>JBossAS7 Custom Modules Test Page</TITLE>
     <%@ page import="org.jboss.test.modules.TestClass" %>
 </HEAD>
 <BODY>

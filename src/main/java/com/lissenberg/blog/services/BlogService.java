@@ -1,6 +1,7 @@
 package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
+import com.lissenberg.blog.util.Performance;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,6 +25,7 @@ public class BlogService {
      * @param maxPosts the amount of post to return.
      * @return a list of blog posts
      */
+    @Performance
     public List<BlogPost> getLatestPosts(int start, int maxPosts) {
         Query query = entityManager.createQuery("select p from blog_post p order by p.posted desc");
         query.setFirstResult(start);

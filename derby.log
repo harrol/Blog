@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat Oct 01 23:38:47 CEST 2011:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0132-c16c-d581-00000473be00 
+Sun Oct 09 10:57:21 CEST 2011:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0132-e7e6-959b-000004726be0 
 on database directory memory:/Users/harro/projects/blog-openshift/blog-test-db  with class loader sun.misc.Launcher$AppClassLoader@546b97fd 
 Loaded from file:/Users/harro/.m2/repository/org/apache/derby/derby/10.8.1.2/derby-10.8.1.2.jar
 java.vendor=Apple Inc.

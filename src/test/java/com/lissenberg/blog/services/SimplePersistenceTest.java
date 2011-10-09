@@ -3,7 +3,6 @@ package com.lissenberg.blog.services;
 import com.lissenberg.blog.domain.BlogPost;
 import com.lissenberg.blog.domain.User;
 import com.lissenberg.blog.domain.UserRole;
-import com.lissenberg.blog.services.BlogService;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,24 +12,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * A simple JPA test. Later we will use Arquillian for in-container testing which will simplify
  * persistence (testing) a lot.
  */
 public class SimplePersistenceTest {
-    
+
     private static EntityManagerFactory entityManagerFactory;
     private static EntityManager entityManager;
     private static EntityTransaction entityTransaction;
     private static BlogService blogService;
-   
+
     @BeforeClass
     public static void init() throws Exception {
         entityManagerFactory = Persistence.createEntityManagerFactory("in-memory-test-db");
@@ -61,7 +59,7 @@ public class SimplePersistenceTest {
         post.setPosted(new Date());
         post.setText("Lorum Ipsum");
         post.setTitle("Test post title");
-        
+
         entityTransaction.begin();
         entityManager.persist(user);
         entityManager.persist(post);
