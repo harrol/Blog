@@ -70,6 +70,5 @@ public class SimplePersistenceTest {
         assertEquals(1, posts.size());
         assertEquals(post.getId(), posts.get(0).getId());
 
-
     }
 }

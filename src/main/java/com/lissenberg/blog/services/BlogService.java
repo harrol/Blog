@@ -4,6 +4,8 @@ import com.lissenberg.blog.domain.BlogPost;
 import com.lissenberg.blog.util.Performance;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -37,8 +39,11 @@ public class BlogService {
         return entityManager.find(BlogPost.class, id);
     }
 
+    @Inject
+    Event<BlogPost> event;
     public void savePost(BlogPost post) {
         entityManager.persist(post);
+        event.fire(post);
     }
 
 }
