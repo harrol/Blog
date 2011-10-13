@@ -1,15 +1,11 @@
 package com.lissenberg.blog.services;
 
-import javax.ejb.EJB;
-
-import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.ejb.EJB;
 
 /**
  * @author Harro Lissenberg
@@ -17,23 +13,23 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class BlogServiceTest {
 
-	@Deployment
-	public static JavaArchive createDeployment() {
-		JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
-				.addPackages(true, "com.lissenberg.blog")
-				.addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml")
-				.addAsResource(EmptyAsset.INSTANCE, "beans.xml");
+//	@Deployment
+//	public static JavaArchive createDeployment() {
+//		JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
+//				.addPackages(true, "com.lissenberg.blog")
+//				.addAsResource("META-INF/arquillian-persistence.xml", "META-INF/persistence.xml")
+//				.addAsResource(EmptyAsset.INSTANCE, "beans.xml");
+//
+//		return jar;
+//	}
 
-		return jar;
-	}
+    @EJB
+    private BlogService blogService;
 
-	@EJB
-	private BlogService blogService;
-
-	@Test
-	public void testInsertBlog() throws Exception {
-		Assert.assertTrue(blogService.getLatestPosts(0, 1).size() > 1);
-	}
+    @Test
+    public void testInsertBlog() throws Exception {
+        Assert.assertTrue(blogService.getLatestPosts(0, 1).size() > 1);
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.lissenberg.blog.services;
 
+import com.lissenberg.blog.domain.RequestInfo;
 import com.lissenberg.blog.domain.Statistics;
 
 import javax.ejb.Stateless;
@@ -26,8 +27,9 @@ public class StatsService {
      * @param blogId the blog id
      * @return updated statistics
      */
-    public Statistics updateStatistics(Long blogId) {
+    public Statistics updateStatistics(Long blogId, RequestInfo requestInfo) {
         Date now = new Date();
+        entityManager.persist(requestInfo);
         Statistics statistics = entityManager.find(Statistics.class, blogId);
         if (statistics == null) {
             statistics = new Statistics();
@@ -43,8 +45,8 @@ public class StatsService {
         }
         entityManager.flush();
         entityManager.detach(statistics);
+        entityManager.detach(requestInfo);
         return statistics;
     }
-
 
 }

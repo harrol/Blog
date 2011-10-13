@@ -1,10 +1,12 @@
 package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
+import com.lissenberg.blog.util.Latest;
 import com.lissenberg.blog.util.Performance;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -41,9 +43,14 @@ public class BlogService {
 
     @Inject
     Event<BlogPost> event;
+
     public void savePost(BlogPost post) {
         entityManager.persist(post);
         event.fire(post);
+    }
+
+    public BlogPost getLatestPost() {
+        return getLatestPosts(0, 1).get(0);
     }
 
 }

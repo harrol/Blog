@@ -11,8 +11,8 @@ import java.util.Date;
 /**
  * @author Harro Lissenberg
  */
-@Entity(name = "blog_ref")
-public class Referers {
+@Entity(name = "blog_req_info")
+public class RequestInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,18 @@ public class Referers {
     private Long blogId;
 
     private String referer;
+    private String userAgent;
+
+    public RequestInfo(Long blogId, String referer, String userAgent) {
+        this.blogId = blogId;
+        this.referer = referer;
+        this.userAgent = userAgent;
+        this.visit = new Date();
+    }
+
+    public RequestInfo() {
+        // required for JPA
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +67,13 @@ public class Referers {
 
     public void setReferer(String referer) {
         this.referer = referer;
+    }
+
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
     }
 }

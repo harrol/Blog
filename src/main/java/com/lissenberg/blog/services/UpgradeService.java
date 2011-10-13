@@ -52,7 +52,7 @@ public class UpgradeService {
         post.setAuthor(admin);
         post.setTitle("First post!");
         post.setText("Java EE 6 is almost 2 years old and I never got the change to work with it in a " +
-                "profession environment. All current projects my company runs still use old and trusted frameworks.<br/>" +
+                "professional environment. All current projects my company runs still use old and trusted frameworks.<br/>" +
                 "I decided to take matters into my own hands and started this quest to learn Java EE 6." +
                 " Wanting to do a little bit more than just a Hello World application and decided to build" +
                 " blogging software using nothing but plain vanilla Java EE 6 (and perhaps a JSF component library)" +
