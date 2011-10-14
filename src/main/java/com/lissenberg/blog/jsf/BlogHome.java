@@ -1,20 +1,19 @@
 package com.lissenberg.blog.jsf;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.inject.Named;
+
 import com.lissenberg.blog.domain.BlogPost;
 import com.lissenberg.blog.domain.RequestInfo;
 import com.lissenberg.blog.domain.Statistics;
 import com.lissenberg.blog.services.BlogService;
 import com.lissenberg.blog.services.StatsService;
 import com.lissenberg.blog.services.TimeService;
-import com.lissenberg.blog.util.Latest;
-
-import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Produces;
-import javax.faces.context.ExternalContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Date;
 
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
@@ -39,9 +38,11 @@ public class BlogHome {
 
     public BlogPost getLatestPost() {
         return blogService.getLatestPost();
-    };
-
-
+    }
+    
+    public List<RequestInfo> getLatestRequests() {
+        return statsService.getRequestInfo();
+    }
 
     public Statistics getStatistics(Long blogId) {
         ExternalContext ctx = getCurrentInstance().getExternalContext();

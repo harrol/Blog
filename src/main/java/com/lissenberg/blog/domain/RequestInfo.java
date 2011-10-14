@@ -76,4 +76,11 @@ public class RequestInfo {
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
     }
+
+    @Override
+    public String toString() {
+        return "RequestInfo{" + "id=" + id + ", visit=" + visit + ", blogId=" + blogId + ", referer=" + referer + ", userAgent=" + userAgent + '}';
+    }
+    
+    
 }
