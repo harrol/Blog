@@ -1,7 +1,5 @@
 package com.lissenberg.blog.util;
 
-import javax.enterprise.inject.Stereotype;
-import javax.inject.Inject;
 import javax.inject.Qualifier;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

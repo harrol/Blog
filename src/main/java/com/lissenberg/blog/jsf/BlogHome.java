@@ -6,13 +6,10 @@ import com.lissenberg.blog.domain.Statistics;
 import com.lissenberg.blog.services.BlogService;
 import com.lissenberg.blog.services.StatsService;
 import com.lissenberg.blog.services.TimeService;
-import com.lissenberg.blog.util.Latest;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Produces;
 import javax.faces.context.ExternalContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
 
@@ -39,8 +36,9 @@ public class BlogHome {
 
     public BlogPost getLatestPost() {
         return blogService.getLatestPost();
-    };
+    }
 
+    ;
 
 
     public Statistics getStatistics(Long blogId) {

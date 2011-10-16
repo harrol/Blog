@@ -34,8 +34,11 @@ public class LogonBean {
     }
 
     public String login() {
-        userManager.logon(username, password);
-        return "index.xhtml";
+        if (userManager.logon(username, password)) {
+            return "index.xhtml";
+        } else {
+            return "logon.xhtml";
+        }
     }
 
 

@@ -1,5 +1,7 @@
 package com.lissenberg.blog.domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -66,4 +68,8 @@ public class User {
         this.name = name;
     }
 
+    @Access(AccessType.PROPERTY)
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 }

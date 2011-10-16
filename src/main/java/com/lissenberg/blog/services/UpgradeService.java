@@ -33,6 +33,9 @@ public class UpgradeService {
     @EJB
     BlogService blogService;
 
+    @EJB
+    SecurityService securityService;
+
     @PostConstruct
     public void updateDatabase() {
         if (blogService.getLatestPosts(0, 2).size() > 0) {
@@ -44,6 +47,8 @@ public class UpgradeService {
         User admin = new User();
         admin.setName("Administrator");
         admin.setUsername("admin");
+        // TODO do not create an user by default, but create on deployment
+        admin.setPasswordHash(securityService.createHash("secret"));
         entityManager.persist(admin);
 
         LOG.info("Inserting first post");
