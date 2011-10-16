@@ -12,6 +12,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.inject.Named;
 import java.util.Date;
+import java.util.List;
 
 import static javax.faces.context.FacesContext.getCurrentInstance;
 
@@ -38,8 +39,9 @@ public class BlogHome {
         return blogService.getLatestPost();
     }
 
-    ;
-
+    public List<RequestInfo> getLatestRequests() {
+        return statsService.getRequestInfo();
+    }
 
     public Statistics getStatistics(Long blogId) {
         ExternalContext ctx = getCurrentInstance().getExternalContext();

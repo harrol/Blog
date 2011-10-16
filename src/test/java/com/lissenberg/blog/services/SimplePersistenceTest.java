@@ -1,6 +1,7 @@
 package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
+import com.lissenberg.blog.domain.RequestInfo;
 import com.lissenberg.blog.domain.User;
 import com.lissenberg.blog.domain.UserRole;
 import org.junit.AfterClass;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * A simple JPA test. Later we will use Arquillian for in-container testing which will simplify
@@ -28,6 +30,7 @@ public class SimplePersistenceTest {
     private static EntityManager entityManager;
     private static EntityTransaction entityTransaction;
     private static BlogService blogService;
+    private static StatsService statsService;
 
     @BeforeClass
     public static void init() throws Exception {
@@ -35,6 +38,8 @@ public class SimplePersistenceTest {
         entityManager = entityManagerFactory.createEntityManager();
         blogService = new BlogService();
         blogService.entityManager = entityManager;
+        statsService = new StatsService();
+        statsService.entityManager = entityManager;
     }
 
     @AfterClass
@@ -70,5 +75,26 @@ public class SimplePersistenceTest {
         assertEquals(1, posts.size());
         assertEquals(post.getId(), posts.get(0).getId());
 
+    }
+    
+    @Test
+    public void testRequestInfo() throws Exception {
+        entityTransaction.begin();
+        for(int i = 0; i < 500; i++) {
+            if(i % 20 == 0) {
+                // add a pause to guarantee we can test ordering by visit
+                Thread.sleep(10);
+            }
+            RequestInfo req = new RequestInfo(1L, "refererer_"+i, "user-agent_"+i);
+            entityManager.persist(req);
+        }
+        entityTransaction.commit();
+        
+        List<RequestInfo> results = statsService.getRequestInfoForPost(1L);
+        for(RequestInfo r : results) {
+            System.out.println(r.toString());
+        }
+        assertEquals(100, results.size());
+        assertTrue(results.get(0).getVisit().after(results.get(99).getVisit()));
     }
 }
