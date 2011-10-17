@@ -8,6 +8,7 @@
         <class>com.lissenberg.blog.domain.User</class>
         <class>com.lissenberg.blog.domain.BlogPost</class>
         <class>com.lissenberg.blog.domain.RequestInfo</class>
+        <class>com.lissenberg.blog.domain.Comment</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:blog-test-db;create=true;"/>

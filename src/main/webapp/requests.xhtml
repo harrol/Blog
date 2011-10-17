@@ -16,30 +16,30 @@
     </ui:define>
 
     <ui:define name="content">
-        
+
         <h:dataTable value="${blogHome.latestRequests}" var="req">
             <h:column>
-		<f:facet name="header">ID</f:facet>
-                    #{req.id}
+                <f:facet name="header">ID</f:facet>
+                #{req.id}
             </h:column>
             <h:column>
-		<f:facet name="header">Blog ID</f:facet>
-                    #{req.blogId}
+                <f:facet name="header">Blog ID</f:facet>
+                #{req.blogId}
             </h:column>
             <h:column>
-		<f:facet name="header">Referer</f:facet>
-                    #{req.referer}
+                <f:facet name="header">Referer</f:facet>
+                #{req.referer}
             </h:column>
             <h:column>
-		<f:facet name="header">User agent</f:facet>
-                    #{req.userAgent}
+                <f:facet name="header">User agent</f:facet>
+                #{req.userAgent}
             </h:column>
             <h:column>
-		<f:facet name="header">Date visited</f:facet>
-                    #{req.visit}
+                <f:facet name="header">Date visited</f:facet>
+                #{req.visit}
             </h:column>
         </h:dataTable>
-        
+
     </ui:define>
 
 

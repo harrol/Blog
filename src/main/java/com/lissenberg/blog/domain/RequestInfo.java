@@ -81,6 +81,6 @@ public class RequestInfo {
     public String toString() {
         return "RequestInfo{" + "id=" + id + ", visit=" + visit + ", blogId=" + blogId + ", referer=" + referer + ", userAgent=" + userAgent + '}';
     }
-    
-    
+
+
 }

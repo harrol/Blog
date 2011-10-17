@@ -6,9 +6,9 @@ import com.lissenberg.blog.domain.Statistics;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Query;
 
 /**
  * Statistics service
@@ -50,9 +50,10 @@ public class StatsService {
         entityManager.detach(requestInfo);
         return statistics;
     }
-    
+
     /**
      * Returns the 100 latest requests
+     *
      * @param blogId the blog id
      * @return requests for the blog
      */
@@ -62,9 +63,10 @@ public class StatsService {
         query.setMaxResults(100);
         return query.getResultList();
     }
-    
+
     /**
      * Returns the 100 latest requests
+     *
      * @return requests
      */
     public List<RequestInfo> getRequestInfo() {
@@ -73,7 +75,5 @@ public class StatsService {
         return query.getResultList();
     }
 
-    
-    
 
 }

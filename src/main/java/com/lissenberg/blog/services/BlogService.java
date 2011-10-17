@@ -1,6 +1,7 @@
 package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
+import com.lissenberg.blog.domain.Comment;
 import com.lissenberg.blog.util.Performance;
 
 import javax.ejb.Stateless;
@@ -47,8 +48,34 @@ public class BlogService {
         event.fire(post);
     }
 
+    public void updatePost(BlogPost post) {
+        entityManager.merge(post);
+    }
+
+    /**
+     * Returns the latest, most recent, post
+     *
+     * @return the latest blog post
+     */
     public BlogPost getLatestPost() {
         return getLatestPosts(0, 1).get(0);
+    }
+
+
+    public void saveComment(Comment comment) {
+        entityManager.persist(comment);
+    }
+
+    /**
+     * Returns all comments for the given blog post
+     *
+     * @param blogId
+     * @return a list of comments
+     */
+    public List<Comment> getCommentsForPost(Long blogId) {
+        Query query = entityManager.createQuery("select c from blog_comment c where c.blogId = :blogId order by c.posted asc", Comment.class);
+        query.setParameter("blogId", blogId);
+        return query.getResultList();
     }
 
 }

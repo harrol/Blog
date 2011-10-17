@@ -1,6 +1,7 @@
 package com.lissenberg.blog.services;
 
 import com.lissenberg.blog.domain.BlogPost;
+import com.lissenberg.blog.domain.Comment;
 import com.lissenberg.blog.domain.RequestInfo;
 import com.lissenberg.blog.domain.User;
 import com.lissenberg.blog.domain.UserRole;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * A simple JPA test. Later we will use Arquillian for in-container testing which will simplify
- * persistence (testing) a lot.
+ * persistence (testing) a lot. i.e. no more manual transaction management
  */
 public class SimplePersistenceTest {
 
@@ -76,25 +77,36 @@ public class SimplePersistenceTest {
         assertEquals(post.getId(), posts.get(0).getId());
 
     }
-    
+
     @Test
     public void testRequestInfo() throws Exception {
         entityTransaction.begin();
-        for(int i = 0; i < 500; i++) {
-            if(i % 20 == 0) {
+        for (int i = 0; i < 500; i++) {
+            if (i % 20 == 0) {
                 // add a pause to guarantee we can test ordering by visit
                 Thread.sleep(10);
             }
-            RequestInfo req = new RequestInfo(1L, "refererer_"+i, "user-agent_"+i);
+            RequestInfo req = new RequestInfo(1L, "refererer_" + i, "user-agent_" + i);
             entityManager.persist(req);
         }
         entityTransaction.commit();
-        
+
         List<RequestInfo> results = statsService.getRequestInfoForPost(1L);
-        for(RequestInfo r : results) {
+        for (RequestInfo r : results) {
             System.out.println(r.toString());
         }
         assertEquals(100, results.size());
         assertTrue(results.get(0).getVisit().after(results.get(99).getVisit()));
+    }
+
+    @Test
+    public void testComments() throws Exception {
+        entityTransaction.begin();
+        for (int i = 0; i < 100; i++) {
+            blogService.saveComment(new Comment(1L, "My name" + i, "Great post. Thanks!" + i));
+        }
+        entityTransaction.commit();
+        List<Comment> comments = blogService.getCommentsForPost(1L);
+        assertEquals(100, comments.size());
     }
 }

@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Fri Oct 14 10:40:41 CEST 2011:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0133-0197-2245-000000c39228 
-on database directory memory:C:\projects\blog\blog-test-db  with class loader sun.misc.Launcher$AppClassLoader@11b86e7 
-Loaded from file:/c:/tools/maven-repository/org/apache/derby/derby/10.8.1.2/derby-10.8.1.2.jar
-java.vendor=Sun Microsystems Inc.
-java.runtime.version=1.6.0_25-b06
-user.dir=C:\projects\blog
+Mon Oct 17 23:16:00 CEST 2011:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0133-13bd-b9e9-00000460cd20 
+on database directory memory:/Users/harro/projects/blog-openshift/blog-test-db  with class loader sun.misc.Launcher$AppClassLoader@546b97fd 
+Loaded from file:/Users/harro/.m2/repository/org/apache/derby/derby/10.8.1.2/derby-10.8.1.2.jar
+java.vendor=Apple Inc.
+java.runtime.version=1.6.0_26-b03-383-11A511
+user.dir=/Users/harro/projects/blog-openshift
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
