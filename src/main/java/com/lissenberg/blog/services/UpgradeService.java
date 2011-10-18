@@ -25,7 +25,7 @@ public class UpgradeService {
 
     @Inject
     @Log
-    Logger LOG;
+    Logger LOG = Logger.getLogger("temp-for-arquillian");
 
     @PersistenceContext
     EntityManager entityManager;

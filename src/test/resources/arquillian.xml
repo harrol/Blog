@@ -10,7 +10,7 @@
     <!--</engine>-->
 
     <!-- Example configuration for a remote JBoss AS 7 instance -->
-    <container qualifier="jboss" default="false">
+    <container qualifier="jboss7" default="true">
         <protocol type="jmx-as7">
             <property name="executionType">REMOTE</property>
         </protocol>
@@ -20,7 +20,7 @@
         </configuration>
     </container>
 
-    <container qualifier="glassfish" default="true">
+    <container qualifier="glassfish" default="false">
         <configuration>
             <property name="sunResourcesXml">src/test/resources/sun-resources.xml</property>
         </configuration>
