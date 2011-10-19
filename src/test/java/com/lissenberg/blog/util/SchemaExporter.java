@@ -12,8 +12,14 @@ import org.junit.Test;
  */
 public class SchemaExporter {
 
-	@Test
-	public void createDerbySchema() {
+
+    public static void main(String[] args) {
+        SchemaExporter exporter = new SchemaExporter();
+        exporter.createDerbySchema();
+        exporter.createMySqlSchema();
+    }
+
+	private void createDerbySchema() {
 		Configuration cfg = new Ejb3Configuration().configure("in-memory-test-db", null).getHibernateConfiguration();
 		new SchemaExport(cfg)
 				.setOutputFile("schema-export-derby.sql")
@@ -22,8 +28,7 @@ public class SchemaExporter {
 				.create(false, true);
 	}
 
-	@Test
-	public void createMySqlSchema() {
+	private void createMySqlSchema() {
 		Configuration cfg = new Ejb3Configuration().configure("in-memory-test-db", null).getHibernateConfiguration();
 		// override the Derby dialect used in tests
 		cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
