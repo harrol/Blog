@@ -1,11 +1,10 @@
 package com.lissenberg.blog.domain;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Holds statistics for a blog post
@@ -17,16 +16,18 @@ public class Statistics {
 
     @Id
     private Long blogId;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date firstVisit;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastVisit;
-    private AtomicInteger hits;
+    private Integer hits;
 
     public Long getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(Long id) {
-        this.blogId = id;
+    public void setBlogId(Long blogId) {
+        this.blogId = blogId;
     }
 
     public Date getFirstVisit() {
@@ -45,19 +46,11 @@ public class Statistics {
         this.lastVisit = lastVisit;
     }
 
-    @Access(AccessType.PROPERTY)
-    public void setHits(int hits) {
-        this.hits = new AtomicInteger(hits);
+    public Integer getHits() {
+        return hits;
     }
 
-    @Access(AccessType.PROPERTY)
-    public int getHits() {
-        return hits.get();
+    public void setHits(Integer hits) {
+        this.hits = hits;
     }
-
-    public void addHit() {
-        hits.incrementAndGet();
-    }
-
-
 }
