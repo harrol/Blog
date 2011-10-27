@@ -15,6 +15,8 @@ import java.util.Date;
 @Entity(name = "blog_req_info")
 public class RequestInfo {
 
+    private static final int MAX_REFERER_LENGTH = 200;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,7 +26,7 @@ public class RequestInfo {
 
     private Long blogId;
 
-    @Column(length = 1000)
+    @Column(length = MAX_REFERER_LENGTH)
     private String referer;
     private String userAgent;
 
@@ -69,8 +71,8 @@ public class RequestInfo {
 
     public void setReferer(String referer) {
         // Quick fixing a problem with referers too long for the database that crash the application
-        if(referer != null && referer.length() > 1000) {
-            this.referer = referer.substring(0, 1000);
+        if(referer != null && referer.length() > MAX_REFERER_LENGTH) {
+            this.referer = referer.substring(0, MAX_REFERER_LENGTH);
         } else {
             this.referer = referer;
         }
