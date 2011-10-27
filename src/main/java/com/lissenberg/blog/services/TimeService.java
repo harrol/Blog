@@ -10,7 +10,7 @@ import java.util.Date;
 public class TimeService implements Serializable {
 
     public String getFormattedDate(final Date date) {
-        DateFormat df = new SimpleDateFormat("H:m dd-MM-yyyy");
+        DateFormat df = new SimpleDateFormat("HH:mm dd-MM-yyyy");
         return df.format(date);
     }
 }
