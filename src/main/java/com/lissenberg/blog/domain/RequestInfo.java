@@ -32,7 +32,7 @@ public class RequestInfo {
 
     public RequestInfo(Long blogId, String referer, String userAgent) {
         this.blogId = blogId;
-        this.referer = referer;
+        setReferer(referer);
         this.userAgent = userAgent;
         this.visit = new Date();
     }
