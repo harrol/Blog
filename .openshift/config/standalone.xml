@@ -96,8 +96,7 @@
                     <driver>mysql</driver>
                     <security>
                       <user-name>admin</user-name>
-                      <!--password>${OPENSHIFT_DB_PASSWORD}</password-->
-                      <password>cZa6yXARJSGW</password>
+                      <password>${OPENSHIFT_DB_PASSWORD}</password>
                     </security>
                 </datasource>
                 <drivers>

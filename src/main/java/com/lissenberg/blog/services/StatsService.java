@@ -42,7 +42,7 @@ public class StatsService {
             entityManager.persist(statistics);
         } else {
             statistics.setLastVisit(now);
-            statistics.setHits(statistics.getHits()+1);
+            statistics.addHit();
             entityManager.merge(statistics);
         }
         entityManager.flush();
