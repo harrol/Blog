@@ -68,7 +68,12 @@ public class RequestInfo {
     }
 
     public void setReferer(String referer) {
-        this.referer = referer;
+        // Quick fixing a problem with referers too long for the database that crash the application
+        if(referer != null && referer.length() > 1000) {
+            this.referer = referer.substring(0, 1000);
+        } else {
+            this.referer = referer;
+        }
     }
 
     public String getUserAgent() {
